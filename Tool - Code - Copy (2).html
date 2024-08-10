@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Tự động thêm dấu chấm</title>
+	<link rel="icon" type="image/png" sizes="32x32" href="file:///D:/Website%20Link%20-%20Cheat/icon.png">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<style>
+	
+	body {
+    font-family: "acumin-pro","Acumin Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 15px;
+    line-height: 1.3;
+	color: #373737;
+	background-color: #ffffff;
+	font-weight: bold;
+	background: url(file:///D:/Website%20Link%20-%20Cheat/bg.png) no-repeat center fixed;
+	background-size: cover;
+	}
+	
+	#container {
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    border-radius: 6px;
+    color: dimgray;
+    display: inline-flex;
+    align-items: center;
+    margin: 10px;
+    padding: 25px;
+    position: relative;
+    transition: all .1s linear;
+    width: auto;
+	}
+	
+	#container_ggdrive {
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    border-radius: 6px;
+    color: dimgray;
+    display: inline-flex;
+    align-items: center;
+    margin: 10px;
+    padding: 25px;
+    position: relative;
+    transition: all .1s linear;
+    width: auto;
+	}
+	
+	#container_searchcode {
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    border-radius: 6px;
+    color: dimgray;
+    display: inline-flex;
+    align-items: center;
+    margin: 10px;
+    padding: 25px;
+    position: relative;
+    transition: all .1s linear;
+    width: auto;
+	}
+	
+	#input {
+	display: flex;
+    width: auto;
+    padding: 10px;
+    flex-direction: column;
+	}
+	
+	#input-box, #output-box,  #input-code {
+	display: block;
+    width: 200px;
+    color: #696969;
+    -webkit-font-smoothing: antialiased;
+    outline: none;
+    background-color: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+    box-sizing: border-box;
+    padding: 11px 15px;
+	font-family: "acumin-pro","Acumin Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+	}
+	
+	#input-drivelink, #output-drivelink, #input-drivelink1, #output-drivelink1, #input-drivelink2, #output-drivelink2 {
+	margin-top: -1px;
+	display: block;
+    width: 427px;
+    color: #696969;
+    -webkit-font-smoothing: antialiased;
+    outline: none;
+    background-color: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+    box-sizing: border-box;
+    padding: 11px 15px;
+	font-family: "acumin-pro","Acumin Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+	}
+	
+	#button {
+	display: flex;
+    padding: 10px;
+    flex-direction: column;
+	}
+	
+	#copyButton, #generate-button, #download-button, #download-button1, #download-button2 {
+    color: #191919;
+    -webkit-font-smoothing: antialiased;
+    outline: none;
+    background-color: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+    box-sizing: border-box;
+	font-family: "acumin-pro","Acumin Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+	cursor: pointer;
+	margin: 10px 0;
+	padding: 15px;
+	}
+	
+	.button-row {
+    display: flex;
+    width: 623px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    }
+	
+	.site-button {
+	padding: 10px;
+    margin: 4px 5px;
+    color: #191919;
+    -webkit-font-smoothing: antialiased;
+    outline: none;
+    background-color: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+    box-sizing: border-box;
+	font-family: "acumin-pro","Acumin Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+	cursor: pointer;
+	}
+	
+	.site-button:hover,#copyButton:hover,#generate-button:hover,#download-button:hover,#download-button1:hover,#download-button2:hover {	
+	color: #dd2026;
+	}
+	
+	.preset-span {
+	padding: 5px;
+	}
+	
+	</style>
+</head>
+<body>
+
+<div id="container_ggdrive">
+    <div id="input">
+        <button id="generate-button">Generate</button>
+    </div>
+    <div id="input">
+        <input type="text" id="input-drivelink" placeholder="Nhập link Google Drive">
+        <input type="text" id="output-drivelink" placeholder="Link download sẽ hiển thị ở đây" readonly>
+        <button id="download-button">Download</button>
+    </div>
+    <div id="input">
+        <input type="text" id="input-drivelink1" placeholder="Nhập link Google Drive">
+        <input type="text" id="output-drivelink1" placeholder="Link download sẽ hiển thị ở đây" readonly>
+        <button id="download-button1">Download</button>
+    </div>
+    <div id="input">
+        <input type="text" id="input-drivelink2" placeholder="Nhập link Google Drive">
+        <input type="text" id="output-drivelink2" placeholder="Link download sẽ hiển thị ở đây" readonly>
+        <button id="download-button2">Download</button>
+    </div>
+</div>
+
+    <!-- The div element to contain the html elements -->
+    <!--<div id="container" style="width: auto;padding: 10px;display: inline-flex;align-items: center;-webkit-font-smoothing: antialiased; outline: none;background-color: #ffffff;border: 1px solid rgba(0, 0, 0, 0.1);border-radius: 4px;box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;box-sizing: border-box;"> -->
+		<div id="container">
+		<!--<div id="input" style="display: flex;flex-direction: column;width: 200px;padding: 10px;"> -->
+		<div id="input">
+        <!-- The label element for the input text box -->
+        <!-- <label for="input-box">Nhập data vào đây:</label> -->
+        <!-- The input text box element to enter data -->
+        <!-- <input type="text" id="input-box" style="display: block; width: 200px;color: #696969;-webkit-font-smoothing: antialiased; outline: none;background-color: #ffffff;border: 1px solid rgba(0, 0, 0, 0.1);border-radius: 2px;box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;box-sizing: border-box;padding: 11px 15px;font-family: "acumin-pro","Acumin Pro","Helvetica Neue",Helvetica,Arial,sans-serif;"> -->
+		<input type="text" id="input-box">
+        <!-- The label element for the output text box -->
+        <!-- <label for="output-box">Data sau khi chuyển đổi:</label> -->
+        <!-- The output text box element to display converted data -->
+        <!-- <input type="text" id="output-box" style="margin-top:-1px;display: block; width: 200px;color: #696969;-webkit-font-smoothing: antialiased; outline: none;background-color: #ffffff;border: 1px solid rgba(0, 0, 0, 0.1);border-radius: 2px;box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;box-sizing: border-box;padding: 11px 15px;font-family: "acumin-pro","Acumin Pro","Helvetica Neue",Helvetica,Arial,sans-serif;"> -->
+		<input type="text" id="output-box">
+		</div>
+		<!-- <div id="button" style="display: flex;padding: 10px;"> -->
+		<div id="button">
+		<!-- <button id="copyButton" style="height: 55px;width: 80px;color: #373737;-webkit-font-smoothing: antialiased; outline: none;background-color: #ffffff;border: 1px solid rgba(0, 0, 0, 0.1);border-radius: 4px;box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;box-sizing: border-box;">Copy</button> -->
+		<button id="copyButton">Copy</button>
+		</div>
+		</div>
+		
+
+
+    <!-- The script element to run the userscript -->
+    <script>
+        function convertData() {
+            let input = $('#input-box').val();
+            let output = '';
+            for (let i = 0; i < input.length; i++) {
+                let char = input[i];
+                output += char;
+                if (char.match(/[a-zA-Z]/) && i < input.length - 1 && input[i + 1].match(/[a-zA-Z]/)) {
+                    output += '.';
+                }
+            }
+            $('#output-box').val(output);
+        }
+
+        $('#input-box').on('input', convertData);
+        $('#input-box, #output-box').on('focus', function() {
+            $(this).select();
+        });
+
+        $('#copyButton').click(function() {
+            let output = $('#output-box').val();
+            let temp = document.createElement('textarea');
+            temp.value = output;
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand('copy');
+            document.body.removeChild(temp);
+        });
+
+        $('#copyButton').mouseover(function() {
+            let output = $('#output-box').val();
+            let temp = document.createElement('textarea');
+            temp.value = output;
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand('copy');
+            document.body.removeChild(temp);
+        });
+
+//Code để lấy link GoogleDrive
+function convertLink(link) {
+    var regexNormal = /https:\/\/drive\.google\.com\/file\/d\/(.*?)\//;
+    var regexContent = /https:\/\/drive\.usercontent\.google\.com\/download\?id=(.*?)&export=download/;
+    var matchNormal = link.match(regexNormal);
+    var matchContent = link.match(regexContent);
+    if (matchNormal) {
+        var id = matchNormal[1];
+        return 'https://drive.google.com/uc?id=' + id + '&export=download';
+    } else if (matchContent) {
+        var id = matchContent[1];
+        return 'https://drive.google.com/uc?id=' + id + '&export=download';
+    } else {
+        return null;
+    }
+}
+
+function downloadFile(link) {
+    var newLink = link + '?bosco';
+    var win = window.open(newLink, '_blank');
+    setTimeout(function() {
+        var downloadButton = win.document.getElementById("uc-download-link");
+        if (downloadButton) {
+            downloadButton.click();
+            setTimeout(function() {
+                win.close();
+            }, 5000);
+        } else {
+            console.error('Download button not found.');
+        }
+    }, 5000);
+}
+
+function handleInputAndButton(inputId, outputId, buttonId) {
+    var inputElement = document.getElementById(inputId);
+    var outputElement = document.getElementById(outputId);
+    var buttonElement = document.getElementById(buttonId);
+
+    inputElement.addEventListener('input', function() {
+        var link = inputElement.value;
+        var downloadLink = convertLink(link);
+        if (downloadLink) {
+            outputElement.value = downloadLink;
+        } else {
+            outputElement.value = '';
+        }
+    });
+
+    buttonElement.addEventListener('click', function() {
+        var link = outputElement.value;
+        if (link) {
+            downloadFile(link);
+        } else {
+            alert('Vui lòng nhập link Google Drive hợp lệ');
+        }
+    });
+
+    inputElement.addEventListener('focus', function() {
+        navigator.clipboard.readText().then(text => {
+            var links = text.split(/\s+/);
+            var driveLinks = links.filter(url => url.startsWith('https://drive.google.com/file/d/'));
+
+            if (driveLinks.length > 0) {
+                inputElement.value = driveLinks[0];
+                var downloadLink = convertLink(driveLinks[0]);
+                if (downloadLink) {
+                    outputElement.value = downloadLink;
+                } else {
+                    outputElement.value = '';
+                }
+            }
+            if (driveLinks.length > 1) {
+                var inputElement1 = document.getElementById('input-drivelink1');
+                var outputElement1 = document.getElementById('output-drivelink1');
+                inputElement1.value = driveLinks[1];
+                var downloadLink1 = convertLink(driveLinks[1]);
+                if (downloadLink1) {
+                    outputElement1.value = downloadLink1;
+                } else {
+                    outputElement1.value = '';
+                }
+            }
+            if (driveLinks.length > 2) {
+                var inputElement2 = document.getElementById('input-drivelink2');
+                var outputElement2 = document.getElementById('output-drivelink2');
+                inputElement2.value = driveLinks[2];
+                var downloadLink2 = convertLink(driveLinks[2]);
+                if (downloadLink2) {
+                    outputElement2.value = downloadLink2;
+                } else {
+                    outputElement2.value = '';
+                }
+            }
+        }).catch(err => {
+            console.error('Failed to read clipboard contents: ', err);
+        });
+    });
+}
+
+function generateLinks() {
+    navigator.clipboard.readText().then(text => {
+        var links = text.split(/\s+/);
+        var driveLinks = links.filter(url => url.startsWith('https://drive.google.com/file/d/'));
+
+        if (driveLinks.length > 0) {
+            document.getElementById('input-drivelink').value = driveLinks[0];
+            document.getElementById('output-drivelink').value = convertLink(driveLinks[0]);
+        }
+        if (driveLinks.length > 1) {
+            document.getElementById('input-drivelink1').value = driveLinks[1];
+            document.getElementById('output-drivelink1').value = convertLink(driveLinks[1]);
+        }
+        if (driveLinks.length > 2) {
+            document.getElementById('input-drivelink2').value = driveLinks[2];
+            document.getElementById('output-drivelink2').value = convertLink(driveLinks[2]);
+        }
+    }).catch(err => {
+        console.error('Failed to read clipboard contents: ', err);
+    });
+}
+
+handleInputAndButton('input-drivelink', 'output-drivelink', 'download-button');
+handleInputAndButton('input-drivelink1', 'output-drivelink1', 'download-button1');
+handleInputAndButton('input-drivelink2', 'output-drivelink2', 'download-button2');
+
+document.getElementById('generate-button').addEventListener('click', generateLinks);
+//Code để lấy link GoogleDrive
+
+    </script>
+
+</body>
+</html>
